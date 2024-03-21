@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Flack's Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <div class="calc-screen">
+            <p id="display">0</p>
+        </div>
+        <div class="buttons">
+            <div class="btnrow">
+                <button class="calc-button" onclick="returnToDisplay()">
+                    x²
+                </button>
+                <button class="calc-button" onclick="returnToDisplay()">
+                    √x
+                </button>
+                <button class="calc-button" onclick="returnToDisplay()">
+                    |x|
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`*`)">
+                    *
+                </button>
+            </div>
+            <div class="btnrow">
+                <button class="calc-button" onclick="returnToDisplay(`7`)">
+                    7
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`8`)">
+                    8
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`9`)">
+                    9
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`/`)">
+                    /
+                </button>
+            </div>
+            <div class="btnrow">
+                <button class="calc-button" onclick="returnToDisplay(`4`)">
+                    4
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`5`)">
+                    5
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`6`)">
+                    6
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`-`)">
+                    -
+                </button>
+            </div>
+            <div class="btnrow">
+                <button class="calc-button" onclick="returnToDisplay(`1`)">
+                    1
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`2`)">
+                    2
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`3`)">
+                    3
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`+`)">
+                    +
+                </button>
+            </div>
+            <div class="btnrow">
+                <button class="calc-button" onclick="returnToDisplay(`C`)">
+                    C
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`0`)">
+                    0
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`.`)">
+                    .
+                </button>
+                <button class="calc-button" onclick="returnToDisplay(`=`)">
+                    =
+                </button>
+            </div>
+            <div class="credits">
+                <p>Made by Flack!</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
