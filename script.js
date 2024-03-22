@@ -1,58 +1,29 @@
-const display = document.getElementById('display');
-let displayText = display.textContent;
-let num1 = null;
-let num2 = null;
-let operator = null;
-
-//Math Handling!
-function operate(operator, firstNumber, secondNumber){
-    switch(operator){
-        case `+`:
-            return add(firstNumber, secondNumber);
-        case `-`:
-            return substract(firstNumber, secondNumber);
-        case `*`:
-            return multiply(firstNumber, secondNumber);
-        case `/`:
-            return divide(firstNumber, secondNumber);
-        default:
-            return `Error!`;
-    }
+let operator = ``;
+let num1 = ``;
+let num2 = ``;
+const display = document.getElementById(`display`)
+let displayContent = display.textContent;
+display.textContent = `0`;
+function Display(){
+  display.textContent = displayContent;
 }
-function add(firstNumber, secondNumber){
-    return firstNumber + secondNumber;
+function updateDisplay(buttonValue){
+  console.log(`You clicked a button! `+ buttonValue);
+  if (displayContent != '0') {
+    displayContent += buttonValue;
+  } 
+  else {
+    displayContent = buttonValue;
+  }
+  if(buttonValue == `C`){
+    displayContent = ``;
+  }
+  if (displayContent == '') {
+    displayContent = '0';
+  }
+  Display();
 }
-function substract(firstNumber, secondNumber){
-    return firstNumber - secondNumber;
-}
-function multiply(firstNumber, secondNumber){
-    return firstNumber * secondNumber;
-}
-function divide(firstNumber, secondNumber){
-    if(secondNumber == 0){
-        return `Cant divide by 0!`;
-    }
-    return firstNumber / secondNumber;
+function buttonClicked(buttonValue){
+  updateDisplay(buttonValue);
 }
 
-//Button Handling!
-
-// Display Handling!
-function returnToDisplay(buttonValue) {
-  console.log('Button clicked:', buttonValue);
-  if (displayText !== '0') {
-    displayText += buttonValue;
-  } else {
-    displayText = buttonValue;
-  }
-  if (buttonValue === 'C') {
-    displayText = '';
-  }
-  if (displayText === '') {
-    displayText = '0';
-  }
-  updateDisplay();
-}
-function updateDisplay() {
-  display.textContent = displayText;
-}
