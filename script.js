@@ -1,44 +1,58 @@
-function operate(operator, nrone, nrtwo){
+const display = document.getElementById('display');
+let displayText = display.textContent;
+let num1 = null;
+let num2 = null;
+let operator = null;
+
+//Math Handling!
+function operate(operator, firstNumber, secondNumber){
     switch(operator){
         case `+`:
-            return add(nrone, nrtwo);
+            return add(firstNumber, secondNumber);
         case `-`:
-            return substract(nrone, nrtwo);
+            return substract(firstNumber, secondNumber);
         case `*`:
-            return multiply(nrone, nrtwo);
+            return multiply(firstNumber, secondNumber);
         case `/`:
-            return divide(nrone, nrtwo);
+            return divide(firstNumber, secondNumber);
         default:
             return `Error!`;
     }
 }
-function add(nrone, nrtwo){
-    return nrone + nrtwo;
+function add(firstNumber, secondNumber){
+    return firstNumber + secondNumber;
 }
-function substract(nrone, nrtwo){
-    return nrone - nrtwo;
+function substract(firstNumber, secondNumber){
+    return firstNumber - secondNumber;
 }
-function multiply(nrone, nrtwo){
-    return nrone * nrtwo;
+function multiply(firstNumber, secondNumber){
+    return firstNumber * secondNumber;
 }
-function divide(nrone, nrtwo){
-    if(nrtwo == 0){
+function divide(firstNumber, secondNumber){
+    if(secondNumber == 0){
         return `Cant divide by 0!`;
     }
-    return nrone / nrtwo;
+    return firstNumber / secondNumber;
 }
-function returnToDisplay(value){
-    const display = document.getElementById('display');
-    if (display.textContent != 0){
-        display.textContent += value;
-    }
-    else{
-        display.textContent = value;
-    }
-    if (value == `C`){
-        display.textContent = display.textContent.slice(0, -2);
-    }
-    if (display.textContent == ``){
-        display.textContent = `0`;
-    }
+
+//Button Handling!
+
+// Display Handling!
+function returnToDisplay(buttonValue) {
+  console.log('Button clicked:', buttonValue);
+  if (displayText !== '0') {
+    displayText += buttonValue;
+  } else {
+    displayText = buttonValue;
+  }
+  if (buttonValue === 'C') {
+    displayText = '';
+  }
+  if (displayText === '') {
+    displayText = '0';
+  }
+  updateDisplay();
+}
+function updateDisplay() {
+  display.textContent = displayText;
 }
