@@ -1,6 +1,7 @@
-let operator = ``;
+let operator = null;
 let num1 = null;
 let num2 = null;
+let result = null;
 const display = document.getElementById(`display`)
 let displayContent = display.textContent;
 display.textContent = `0`;
@@ -31,24 +32,43 @@ function updateDisplay(buttonValue){
   if (displayContent.endsWith("=")) {
     displayContent = displayContent.slice(0, -1);
   }
+  if (result == 0){
+    displayContent = `0`;
+  }
   Display();
 }
 //Click Handling !!!
 function buttonClicked(buttonValue){
-  if (buttonValue == `+`) {
+  if (buttonValue == `+` || buttonValue == `-` 
+  || buttonValue == `*` || buttonValue == `/`) {
     num1 = Number(displayContent);
-    console.log(num1);
-    displayContent = "0";
+    operator = buttonValue;
     display.textContent = displayContent;
   }
-  else if (buttonValue == "=") {
+  if (buttonValue == "=") {
     num2 = Number(displayContent);
-    console.log(num2);
-    result = num1 + num2;
+    console.log(num1, operator, num2);
+    doMath(num1, operator, num2);
+    console.log(result);
     displayContent = result.toString();
-    console.log(displayContent);
   }
   updateDisplay(buttonValue);
   Display();
 }
 //Math Handling (coming soon in a more optimized version)
+function doMath(firstNumber, operator, secondNumber){
+  switch(operator){
+    case `+`:
+      result = firstNumber + secondNumber;
+      return result;
+    case `-`:
+      result = firstNumber - secondNumber;
+      return result;
+    case `*`:
+      result = firstNumber * secondNumber;
+      return result;
+    case `/`:
+      result = firstNumber / secondNumber;
+      return result;
+  }
+}
