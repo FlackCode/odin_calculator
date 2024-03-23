@@ -1,3 +1,4 @@
+let newCalc = false;
 let operator = null;
 let num1 = null;
 let num2 = null;
@@ -41,6 +42,9 @@ function updateDisplay(buttonValue){
   if (displayContent.endsWith("sqrt")) {
     displayContent = displayContent.slice(0, -4);
   }
+  if (displayContent.endsWith("abs")) {
+    displayContent = displayContent.slice(0, -3);
+  }
   if (result == 0){
     displayContent = `0`;
     result = null;
@@ -51,10 +55,6 @@ function updateDisplay(buttonValue){
     num1 = null;
     num2 = null;
     operator = null;
-  }
-  if (result != null && !isNaN(Number(buttonValue))){
-    displayContent = buttonValue;
-    result = null;
   }
   if (result === "Infinity" && !isNaN(Number(buttonValue))) {
     displayContent = buttonValue;
@@ -117,7 +117,12 @@ function buttonClicked(buttonValue){
     operator = buttonValue;
     doMath(num1, operator);
     displayContent = result;
-    result = parseFloat(result);
+  }
+  else if (buttonValue == `abs`){
+    num1 = result;
+    operator = buttonValue;
+    doMath(num1, operator);
+    displayContent = result;
   }
   updateDisplay(buttonValue);
   Display();
@@ -145,6 +150,9 @@ function doMath(firstNumber, operator, secondNumber){
       break;
     case `sqrt`:
       result = Math.sqrt(firstNumber);
+      break;
+    case `abs`:
+      result = Math.abs(firstNumber);
       break;
   }
   if (Math.abs(result) > 1e10) {
