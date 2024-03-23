@@ -21,6 +21,8 @@ function updateDisplay(buttonValue){
     displayContent = ``;
     num1 = null;
     num2 = null;
+    operator = null;
+    result = null;
   }
   if (displayContent == '') {
     displayContent = '0';
@@ -28,12 +30,25 @@ function updateDisplay(buttonValue){
   if(buttonValue == `+` || buttonValue == `-` 
   || buttonValue == `*` || buttonValue == `/`){
     displayContent = `0`;
+    decimalBtn.disabled = false;
   }
   if (displayContent.endsWith("=")) {
     displayContent = displayContent.slice(0, -1);
   }
   if (result == 0){
     displayContent = `0`;
+    result = null;
+  }
+  if (result === "Division by 0 impossible!" && !isNaN(Number(buttonValue))) {
+    displayContent = buttonValue;
+    result = null;
+  }
+  if (buttonValue == `.`&& displayContent.includes(`.`)){
+    const decimalBtn = document.getElementById(`decimalBtn`);
+    decimalBtn.disabled = true;
+  }
+  if (buttonValue == `=`){
+    decimalBtn.disabled = false;
   }
   Display();
 }
@@ -50,25 +65,36 @@ function buttonClicked(buttonValue){
     console.log(num1, operator, num2);
     doMath(num1, operator, num2);
     console.log(result);
-    displayContent = result.toString();
+    displayContent = result;
   }
   updateDisplay(buttonValue);
   Display();
 }
-//Math Handling (coming soon in a more optimized version)
+//Math Handling
 function doMath(firstNumber, operator, secondNumber){
   switch(operator){
     case `+`:
       result = firstNumber + secondNumber;
-      return result;
+      break;
     case `-`:
       result = firstNumber - secondNumber;
-      return result;
+      break;
     case `*`:
       result = firstNumber * secondNumber;
-      return result;
+      break;
     case `/`:
       result = firstNumber / secondNumber;
-      return result;
+      if(secondNumber == 0){
+        result = `Division by 0 impossible!`;
+      }
+      break;
   }
+  if(isFloat(result)){
+    result = parseFloat(result).toFixed(3);
+  }
+  displayContent = result.toString();
+  return result;
+}
+function isFloat(number){
+  return Number(number) === number && number % 1 !== 0;
 }
